@@ -1,9 +1,10 @@
 {
-    email eldon.ew.com@gmail.com
-    # Optional staging lets encrypt for testing. Comment out for production.
-    # acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+        email eldon.ew.com@gmail.com
+        # Optional staging lets encrypt for testing. Comment out for production.
+        acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
 }
 
-:80 {
-    reverse_proxy backend:3000
+({env.SITE_URL}) {
+        respond "Hello, world!"
+        # reverse_proxy backend:3000
 }

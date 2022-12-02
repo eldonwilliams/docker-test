@@ -35,6 +35,8 @@ services:
       - caddy_config:/config
     networks:
       - urlnet
+    environment:
+      SITE_URL: $SITE_URL
 
 networks:
   urlnet:
