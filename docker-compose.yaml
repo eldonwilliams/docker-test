@@ -17,11 +17,17 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - './backend:/app/'
+      - ./backend:/app/
     depends_on:
       - redis
     networks:
       - urlnet
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - static_content:/dist/
   caddy:
     image: caddy
     restart: unless-stopped
@@ -33,16 +39,21 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+      - static_content:/www/eldon/zone/
     networks:
       - urlnet
     environment:
       SITE_URL: $SITE_URL
+      API_URL: $API_URL
+    depends_on:
+      - backend
+      - frontend
 
 networks:
   urlnet:
-
 
 volumes:
   caddy_data:
     external: true
   caddy_config:
+  static_content:
