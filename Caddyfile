@@ -1,3 +1,3 @@
 {$SITE_URL} {
-	respond "Hello, world!"
+	reverse_proxy backend:3000
 }
