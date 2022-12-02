@@ -1,3 +1,8 @@
 {$SITE_URL} {
+	root * /www/eldon/zone
+	file_server
+}
+
+{$API_URL} {
 	reverse_proxy backend:3000
 }
