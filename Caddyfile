@@ -1,3 +1,3 @@
-($SITE_URL) {
+https://eldon.zone {
 	respond "Hello, world!"
 }
